@@ -21,20 +21,22 @@ public class Task2 {
     }
 
     public static void returnSubstring(String string, int startIndex, int endIndex) {
+        String result = "";
         if (startIndex >= 0 && endIndex < string.length()) {
             for (int i = startIndex; i < endIndex; i++) {
-                System.out.print(string.charAt(i));
+                result += string.charAt(i);
             }
-            System.out.println();
+            System.out.println(result);
         }
     }
 
     public static void returnSubstring(String string, int startIndex) {
+        String result = "";
         if (startIndex >= 0 && startIndex < string.length()) {
             for (int i = startIndex; i < string.length(); i++) {
-                System.out.print(string.charAt(i));
+                result += string.charAt(i);
             }
-            System.out.println();
+            System.out.println(result);
         }
     }
 }

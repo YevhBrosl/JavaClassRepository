@@ -11,34 +11,26 @@ package homework_14;
 //"H" -> ???
 
 
-
 public class Task4 {
     public static void main(String[] args) {
         String string = "Hello";
-        toUpperCaseSubstring(string, 1, 2);
+        toUpperCaseSubstring(string);
 
 
     }
 
-    public static void toUpperCaseSubstring(String string, int startIndex, int endIndex) {
+    public static void toUpperCaseSubstring(String string) {
 
-        if (startIndex >= 0 && startIndex <= string.length() && endIndex <= string.length()) {
-            char[] result = string.toCharArray();
-            //  for (int i = startIndex; i <= endIndex; i++) {
-            //                char symbol = string.charAt(i);
-            //                if ((int) symbol >= 97 && (int) symbol <= 122) {
-            //                    result[i] = (char) (symbol - 32);
-            //                }
-            //            }
-            //
-                char symbol1 = string.charAt(startIndex);
-                char symbol2 = string.charAt(endIndex);
+        String result = "";
+        for (int i = 1; i < Math.min(string.length(), 3); i++) {
+            char symbol = string.charAt(i);
 
-
-
-            System.out.println(new String(result));
+            if ((int) symbol >= 97 && (int) symbol <= 122) {
+                symbol = (char) (symbol - 32);
+            }
+            result += String.valueOf(symbol);
         }
-
+        System.out.println(result);
     }
 }
 
