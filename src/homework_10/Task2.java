@@ -24,15 +24,20 @@ public class Task2 {
     public static void copyOfArray(int[] inputArray, int len) {
         int[] newArray = new int[len];
 
-        System.out.print("[");
         for (int i = 0; i < newArray.length && i < inputArray.length; i++) {
             newArray[i] = inputArray[i];
-            System.out.print(newArray[i] + ((i < newArray.length - 1) ? "; " : "]\n"));
         }
-
-
-
+        printArray(newArray);
     }
+
+    public static void printArray(int[] ints) {
+        System.out.print("[");
+        for (int i = 0; i < ints.length; i++) {
+            System.out.print(ints[i] + ((i < ints.length - 1) ? "; " : "]\n"));
+
+        }
+    }
+
 //    public static void copyOfArray(int[] inputArray, int len) {
 //        int[] newArray = new int[len];
 //
