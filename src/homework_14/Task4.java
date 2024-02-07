@@ -13,24 +13,38 @@ package homework_14;
 
 public class Task4 {
     public static void main(String[] args) {
-        String string = "Hello";
-        toUpperCaseSubstring(string);
-
+        String string = "H";
+        String str = toUpperCaseSubstring(string);
+        System.out.println(str);
 
     }
 
-    public static void toUpperCaseSubstring(String string) {
+    public static String toUpperCaseSubstring(String string) {
+        if (string == null) return ""; // null
 
         String result = "";
-        for (int i = 1; i < Math.min(string.length(), 3); i++) {
-            char symbol = string.charAt(i);
 
-            if ((int) symbol >= 97 && (int) symbol <= 122) {
-                symbol = (char) (symbol - 32);
-            }
-            result += String.valueOf(symbol);
+        if (string.length() > 1) {
+            char char2 = string.charAt(1);
+            result += char2;
         }
-        System.out.println(result);
+
+
+        if (string.length() > 2) {
+            char char3 = string.charAt(2);
+            result += char3;
+        }
+
+//        for (int i = 1; i < Math.min(string.length(), 3); i++) {
+//            char symbol = string.charAt(i);
+//
+//            if ((int) symbol >= 97 && (int) symbol <= 122) {
+//                symbol = (char) (symbol - 32);
+//            }
+//            result += String.valueOf(symbol);
+//        }
+        return result.toUpperCase(); // null или пустая строка в случае, если не удалось найти символы
+
     }
 }
 

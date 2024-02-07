@@ -5,22 +5,32 @@ package homework_14;
 //Написать метод по поиску строки в массиве строк.
 //На вход метод принимает массив строк, и строку для поиска.
 
+import java.util.Arrays;
+
 public class Task3 {
     public static void main(String[] args) {
-        String[] strings = {null, "London", "Rome", null, "Paris", "Washington", "Berlin", "Brussels"};
-        System.out.println(findString(strings, "paris"));
+        String[] strings = {"Java", "Python", null, "Orange", "JS", "hello"};
+        //System.out.println(findString(strings, "paris"));
+        int idx = findString(strings, "Js");
+        System.out.println("idx: " + idx);
+        if (idx > 0) strings[idx] = "New Value";
+
+        System.out.println(Arrays.toString(strings));
+
+        System.out.println(strings[idx].contains("al"));
+        System.out.println(strings[idx].indexOf("al"));
 
     }
 
-    public static String findString(String[] inputArray, String searchString) {
-        if (inputArray == null) return null;
+    public static int findString(String[] inputArray, String searchString) {
+        if (inputArray == null || searchString == null) return -1;
 
         for (int i = 0; i < inputArray.length; i++) {
-            if (inputArray[i] == null) return null;
-
-            if (inputArray[i].equalsIgnoreCase(searchString)) return inputArray[i];
+            if (inputArray[i] != null && inputArray[i].equals(searchString))
+                return i; // строгое равенство с учетом регистров
+            if (inputArray[i] != null && inputArray[i].equalsIgnoreCase(searchString))
+                return i; // метод сравнения значений строк без учета регистра
         }
-        System.out.print("Элемент отсутствует: ");
-        return null;
+        return -1;
     }
 }

@@ -38,4 +38,5 @@ public class Teacher {
     void writeReports() {
         System.out.println("Я пишу отчеты");
     }
+
 }
