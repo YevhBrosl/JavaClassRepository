@@ -2,14 +2,22 @@ package lesson_16;
 
 public class RubberArray {
 
-    int[] array;
-    int cursor; // присвоено значение поумолчанию 0
+    private int[] array;
+    private int cursor; // присвоено значение поумолчанию 0
+
 
     public RubberArray() {
         array = new int[10];
     }
+//Конструктор, принимающий в себя обычный массив и создающий RubberArray с такими де значениями
+    public RubberArray(int[] ints) {
+        array = new int[ints.length * 2];
+        for (int i = 0; i < ints.length; i++) {
+            add(ints[i]);
+        }
+    }
 
-    void add(int number) {
+    public void add(int number) {
         //Добавлять значения в массив
 
         // проверка, есть ли место в нашем внутреннем массиве
@@ -21,7 +29,7 @@ public class RubberArray {
         cursor++;
     }
 
-    void add(int... ints) {
+    public void add(int... ints) {
         // ints - с ним можно обращаться так же, как со ссылкой на массив
 
         for (int i = 0; i < ints.length; i++) {
@@ -29,17 +37,8 @@ public class RubberArray {
         }
     }
 
-//    public RubberArray(int[] array){
-//        int i;
-//        System.out.println("[");
-//        for (i = 0; i < array.length; i++) {
-//            RubberArray[i] = array[i];
-//        }
-//        System.out.print(RubberArray[i] + ((i < array.length - 1) ? ", " : "]\n"));
-//    }
 
-
-    void expandArray() {
+    private void expandArray() {
         System.out.println("Расширяем массив!============ " + cursor);
         //1. создать новый массив большего размера
         // 2. переписать значения из старого массива в новый
@@ -65,47 +64,64 @@ public class RubberArray {
         return result;
     }
 
-    // Поиск элемента по значению
-    public int searchValue(int findMe) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == findMe) return findMe;
+    // Поиск элемента по значению (вернуть индекс)
+    public int indexOf(int findMe) {
+        for (int i = 0; i < cursor; i++) {
+            if (array[i] == findMe) return i;
         }
         return -1;
     }
 
     //Возвращение значения по индексу
-    public int getValueFromIndex(int idx) {
-        for (int i = 0; i < array.length; i++) {
-            if (i == idx) return array[i];
+    public int getValue(int idx) {
+        if (idx >= 0 && idx < cursor) {
+            return array[idx];
+        } else {
+            return Integer.MAX_VALUE;// хорошего решения на этой стадии нет
+            //TODO поправить
         }
-        return -1;
     }
 
     //Текущее количество элементов в массиве
-    public int numberOfElementsInArray() {
-        int count = 0;
-        for (int i = 1; i < array.length - 1; i++) {
-            count++;
-        }
-        return count;
+    public int size() {
+        return cursor;
     }
 
     //Замена значения по индексу (есть индекс и новое значение)
-    void replaceValueByIndex(int idx, int newValue){
-        for (int i = 0; i < array.length; i++) {
-            if (i == idx){
-                array[i] = newValue;
-            }
+    public void replaceValueByIndex(int idx, int newValue) {
+        if (idx >= 0 && idx < cursor) {
+            array[idx] = newValue;
         }
     }
 
     //Замена значения по значению (есть старое и новое значение)
-    void replaceValue(int value, int newValue){
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == value){
+    public void replaceValue(int value, int newValue) {
+        for (int i = 0; i < cursor; i++) {
+            if (array[i] == value) {
                 array[i] = newValue;
             }
         }
+    }
+
+    //Удаление элемента по индексу (возвращается значение из
+    // удаленного индекса, или null, если не найдено)
+    public int remove(int index) {
+        if (index < 0 && index >= cursor) {
+            return Integer.MAX_VALUE; //TODO correct
+        }
+        int value = array[index];
+
+        for (int i = index; i < cursor - 1; i++) {
+            array[i] = array[i + 1];
+        }
+        cursor--;
+        return value;
+    }
+    public boolean removeByValue(int value) {
+        int index = indexOf(value);
+        if (index == -1) return false;
+        remove(index);
+        return true;
     }
 
 }
