@@ -44,7 +44,7 @@ public class Employee {
 
     public void setSalary(int salary) {
         if (salary <= 0) {
-            System.out.println("Некорректнразмер зарплаты");
+            System.out.println("Некорректный размер зарплаты");
         } else {
             this.salary = salary;
         }

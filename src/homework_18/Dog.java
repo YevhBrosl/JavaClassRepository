@@ -21,51 +21,68 @@ public class Dog {
 
     private String name;
     private int jumpHeight;
+    private int maxJumpHeight;
+    private static int increasePerOneTraining;
+
+    private static int numberOfJumps;
+
+    static {
+        increasePerOneTraining = 10;
+    }
 
     public Dog(String name, int jumpHeight) {
         this.name = name;
         this.jumpHeight = jumpHeight;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getJumpHeight() {
-        return jumpHeight;
-    }
-
-    public void setJumpHeight(int jumpHeight) {
-        this.jumpHeight = jumpHeight;
+        this.maxJumpHeight = jumpHeight * 2;
     }
 
     public void jump() {
-        System.out.println("Я прыгаю.");
+        numberOfJumps++;
+        System.out.println("Собака " + name + " совершила прыжок");
     }
 
-    public void exercise() {
-        do {
-            System.out.println("Я тренируюсь.");
-            jumpHeight += 10;
-        } while (jumpHeight <= jumpHeight * 2);
-
+    private void training() {
+        this.jumpHeight += increasePerOneTraining;// 44 + 10 = 54 < 88
+        //84 + 10 = 94 (max 88)
+        //jumpHeight = (jumpHeight > maxJumpHeight) ? maxJumpHeight : jumpHeight;
+        //                          54             88   -> 54
+        //                          94             88   -> 88
+        jumpHeight = Math.min(jumpHeight, maxJumpHeight);// метод возвращает меньшее из двух чисел
+        System.out.println(" === прыжок после тренировки === " + jumpHeight);
     }
 
-    public void takeBarrier(int barrier) {
-        if (barrier < jumpHeight) {
+
+    public boolean takeBarrier(int barrier) {
+        System.out.println(name + " прыжок: " + jumpHeight + "; барьер: " + barrier + " | Начало метода takeBarrier");
+        if (jumpHeight >= barrier) {// если текущая высота прыжка достаточная - прыгаем
             jump();
-            System.out.println("Я могу преодолеть барьер.");
-        } else if (jumpHeight * 2 > barrier) {
-             exercise();
-            System.out.println("Барьер слишком высокий, мне надо тренироваться.");
-        } else {
-            System.out.println("Извини, барьер чересчур высокий, я не смогу его преодолеть.");
+            System.out.println("(jumpHeight >= barrier) = true -> " + name + " прыжок: " + jumpHeight + "; барьер: " + barrier);
+            return true;
+        } else { // текущий прыжок меньше барьера
+            if (maxJumpHeight >= barrier) { // проверяем, есть ли смысл тренироваться
+                do { // начинаем цикл тренировок
+                    training();//каждя тренировка увеличивает высоту прыжка на 10 см
+                } while (jumpHeight < barrier);// проверяем, достаточная ли высота прыжка для взятия барьера
+
+                jump();
+                System.out.println("maxJumpHeight >= barrier : true -> " + name + " прыжок: " + jumpHeight + "; барьер: " + barrier);
+                return true;
+            } else { // тренировки лишены смысла - собака взять барьер не может
+                System.out.println("Извини, барьер чересчур высокий, я не смогу его преодолеть.");
+                System.out.println("maxJumpHeight >= barrier : FALSE -> " + name + " прыжок: " + jumpHeight + "; барьер: " + barrier);
+                return false;
+            }
         }
-        System.out.println("Я преодолеваю барьер.");
+
+    }
+
+    public void info() {
+        System.out.println("Собака " + name + "; текущий прыжок " + jumpHeight + " | max " + maxJumpHeight);
+    }
+
+    public static int numberOfJumps() {
+        return numberOfJumps;
     }
 
 }
+
