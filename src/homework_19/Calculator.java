@@ -1,8 +1,8 @@
 package homework_19;
 
 public class Calculator {
-    private static double x;
-    private static double y;
+//    private static double x;
+//    private static double y;
 
 
     public static double addition(double x, double y) {
