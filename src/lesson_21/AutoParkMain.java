@@ -28,6 +28,8 @@ public class AutoParkMain {
 
         System.out.println(bus.createStringByPassengersList());
 
+        System.out.println(bus.toString());
+
 
 
 

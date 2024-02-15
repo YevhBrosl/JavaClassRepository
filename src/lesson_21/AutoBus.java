@@ -58,11 +58,11 @@ public class AutoBus {
     public String toString() {
         //TODO переписать, используя StringBuilder
         // добавить в эту строку список пассажиров
-        StringBuilder sb = new StringBuilder("{");
-        sb.append("Autobus: {").append(" driver: ").append(driver.getLicenseNumber()).append("; autopilot: ").append(autoPilot.getSoftwareVersion()).append("; passenger list: ").append(createStringByPassengersList()).append("}");
-        sb.append("; ");
-        String result = sb.toString();
-        return result;
+        StringBuilder sb = new StringBuilder("Autobus: [ driver: ");
+        sb.append(driver.getLicenseNumber()).append("; autopilot: ").append(autoPilot.getSoftwareVersion())
+                .append("; passenger list: ").append(createStringByPassengersList()).append("]");
+
+        return sb.toString();
     }
 
     public String createStringByPassengersList() {
