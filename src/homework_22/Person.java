@@ -3,7 +3,7 @@ package homework_22;
 public class Person {
     private int speed;
     private int rest;
-    private int restCounter;
+
 
     public Person(int speed, int rest) {
         this.speed = speed;
