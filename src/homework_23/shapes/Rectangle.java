@@ -1,4 +1,4 @@
-package homework_23;
+package homework_23.shapes;
 
 public class Rectangle extends Shape {
 

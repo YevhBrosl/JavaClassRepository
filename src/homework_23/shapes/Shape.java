@@ -1,4 +1,4 @@
-package homework_23;
+package homework_23.shapes;
 
 abstract public class Shape {
 

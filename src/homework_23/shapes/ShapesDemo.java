@@ -1,4 +1,4 @@
-package homework_23;
+package homework_23.shapes;
 
 public class ShapesDemo {
     public static void main(String[] args) {
