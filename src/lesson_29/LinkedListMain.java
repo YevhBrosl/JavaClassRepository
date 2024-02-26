@@ -4,6 +4,7 @@ import util.MyLinkedList;
 
 import java.util.Arrays;
 
+
 public class LinkedListMain {
     public static void main(String[] args) {
         MyLinkedList<Integer> linkedList = new MyLinkedList<>();
