@@ -1,5 +1,7 @@
 package util;
 
+import java.lang.reflect.Array;
+
 public class MyArrayList<T> implements MyList<T> {
 
     private T[] array;
@@ -105,26 +107,48 @@ public class MyArrayList<T> implements MyList<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T[] toArray() {
-//        //TODO CCE
-//        // 1. создать массив нужной длины и типа
-//        // 2. переписать значения в новый массив
-//        //3. вернуть новый массив из метода
-//        if (cursor == 0) return (T[] new Object)
+       // 1. Создать массив нужной длинны и типа
+        // 2. Переписать значения в новый массив
+        // 3. Вернуть новый массив из метода
+
+        if (cursor == 0) return (T[]) new Object[0];
+        Class<T> clazz = (Class<T>) array[0].getClass();
+
+
+        T[] res1 = (T[]) Array.newInstance(clazz, cursor);
+        for (int i = 0; i < cursor; i++) {
+            res1[i] = array[i];
+        }
+
+        return res1;
 //
+//        T[] result = (T[]) new Object[cursor]; // 1. Создаем массив длинной cursor(кол-во элементов во внутреннем массиве)
+//        for (int i = 0; i < cursor; i++) {
+//            result[i] = array[i];
+//        }
 //
-        T[] result = (T[]) new Object[cursor]; //создаем массив длиной cursor
+//        System.arraycopy(array, 0, result, 0, cursor); // // - альтернативный вариант
+//        return Arrays.copyOf(array, cursor); // - альтернативный вариант
+//
+    }
+    public T[] toArray(Class<T> clazz) {
+
+        // Рефлексия
+        // 1. Создаем массив длинной cursor(кол-во элементов во внутреннем массиве)
+        @SuppressWarnings("unchecked")
+        T[] result = (T[]) Array.newInstance(clazz, cursor);
         for (int i = 0; i < cursor; i++) {
             result[i] = array[i];
         }
-        //System.arraycopy(array, 0, result, 0, cursor) // альтернативный метод
-//        //return Arrays.copyOf(array, cursor); // альтернативный метод
-        return result;
-   }
+
+        System.out.println("========== instanceof: " + (result[0] instanceof Integer));
+        return result; // Integer[]
+    }
 
         //Удаление элемента по индексу (возвращается значение из
 // удаленного индекса, или null, если не найдено)
         @Override
-        public T remove ( int index){
+        public T remove (int index){
             System.out.println("Remove by index");
             if (index < 0 && index >= cursor) {
                 return null;
