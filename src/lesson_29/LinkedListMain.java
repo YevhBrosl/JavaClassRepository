@@ -55,6 +55,7 @@ public class LinkedListMain {
 
         System.out.println(linkedList.contains(10));
 
+        //MyLinkedList<Integer> linkedList1 = new MyLinkedList<>();
         Integer[] result = linkedList.toArray();
         System.out.println(Arrays.toString(result));
 
@@ -69,6 +70,14 @@ public class LinkedListMain {
 
         linkedList.set(1, 100);
         System.out.println(linkedList);
+
+        MyLinkedList<String> linkedList1 = new MyLinkedList<>();
+        linkedList1.addAll("Str", "Str1", "Str2", "Str3", "Str4");
+        System.out.println(linkedList1);
+        System.out.println(linkedList1.remove(0));
+        System.out.println(linkedList1);
+        System.out.println(linkedList1.remove(4));
+        System.out.println(linkedList1);
 
 
 

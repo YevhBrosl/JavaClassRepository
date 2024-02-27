@@ -171,8 +171,7 @@ public class MyLinkedList <T> implements MyList<T> {
     @Override
     @SuppressWarnings("unchecked")
     public T[] toArray() {
-        if (size == 0) return (T[]) new Object[0];
-        Class<T> clazz = (Class<T>) first.value.getClass();
+        if (first == null) return null;
 
         T[] result = (T[]) Array.newInstance(first.value.getClass(), size);
         Node<T> cursor = first;
@@ -204,12 +203,17 @@ public class MyLinkedList <T> implements MyList<T> {
         if (index < 0 || index >= size) {
             return null;
         }
-        Node<T> cursor = first;
-        for (int i = 0; i < index; i++) {
-            cursor = cursor.next;
-        }
-        removeNode(cursor);
-        return cursor.value;
+        Node<T> nodeForRemove = searchNodeByIndex(index);
+        T value = nodeForRemove.value;
+
+        removeNode(nodeForRemove);
+        return value;
+//        Node<T> cursor = first;
+//        for (int i = 0; i < index; i++) {
+//            cursor = cursor.next;
+//        }
+//        removeNode(cursor);
+//        return cursor.value;
     }
 
     @Override
@@ -219,15 +223,17 @@ public class MyLinkedList <T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        if (index >= 0 && index < size) {
-            Node<T> cursor = first;
-            for (int i = 0; i < index; i++) {
-                cursor = cursor.next;
-            }
-            return cursor.value;
-        } else {
-            return null;
-        }
+        if (index < 0 || index >= size) return null;
+        return searchNodeByIndex(index).value;
+//        if (index >= 0 && index < size) {
+//            Node<T> cursor = first;
+//            for (int i = 0; i < index; i++) {
+//                cursor = cursor.next;
+//            }
+//            return cursor.value;
+//        } else {
+//            return null;
+//        }
     }
 
     @Override
@@ -254,6 +260,21 @@ public class MyLinkedList <T> implements MyList<T> {
         }
         sb.append("]");
         return sb.toString();
+    }
+    private Node<T> searchNodeByIndex(int index) {
+        Node<T> cursor;
+        if (index <= size / 2) {
+            cursor = first;
+            for (int i = 0; i < index; i++) {
+                cursor = cursor.next;
+            }
+        } else {
+            cursor = last;
+            for (int i = size - 1; i > index ; i--) {
+                cursor = cursor.previous;
+            }
+        }
+        return cursor;
     }
 
     private static class Node<T> {
