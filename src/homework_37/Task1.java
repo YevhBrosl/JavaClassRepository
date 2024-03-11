@@ -9,7 +9,7 @@ import java.util.List;
 //Метод должен возвращать список состоящий из элементов, которые присутствуют в обоих коллекциях.
 public class Task1 {
 
-    public static<T> List<T> findCommonElements(List<T> list1, List<T> list2) {
+    public static<T> List<T> intersection(List<T> list1, List<T> list2) {
         List<T> result = new ArrayList<>();
         for (T element : list1) {
             if (list2.contains(element) && !result.contains(element)) {
@@ -37,7 +37,7 @@ public class Task1 {
         list2.add(5);
         list2.add(6);
 
-        List<Integer> result = findCommonElements(list1, list2);
+        List<Integer> result = intersection(list1, list2);
         System.out.println(result);
     }
 }

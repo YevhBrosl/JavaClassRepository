@@ -39,7 +39,7 @@ public class Task2 {
         Random random = new Random();
 
         for (int i = 0; i < 2000; i++) {
-            int index = random.nextInt(list.size() - 1);
+            int index = random.nextInt(list.size());
             int value = random.nextInt();
             list.add(index, value);
         }
@@ -53,7 +53,7 @@ public class Task2 {
         Random random = new Random();
 
         for (int i = 0; i < 1000; i++) {
-            int index = random.nextInt(list.size() -1);
+            int index = random.nextInt(list.size());
             list.remove(index);
         }
 
@@ -65,7 +65,7 @@ public class Task2 {
         Random random = new Random();
 
         for (int i = 0; i < 1000; i++) {
-            int value = random.nextInt(10001);
+            int value = random.nextInt(10000);
             list.remove(Integer.valueOf(value));
         }
 
@@ -82,7 +82,7 @@ public class Task2 {
         List<Integer> linkedList = new LinkedList<>();
 
         for (int i = 0; i < size; i++) {
-            int value = random.nextInt(1001);
+            int value = random.nextInt(1000);
             arrayList.add(value);
             linkedList.add(value);
         }
