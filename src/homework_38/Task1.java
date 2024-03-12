@@ -11,9 +11,11 @@ public class Task1 {
 
     public static List<String> getUniqueSortedWords(String string) {
         String result = string.replaceAll("[\\p{Punct} ]", " ");
+        //String result = string.replaceAll("[^a-zA-Z0-9а-яА-Я]", " ");
         String[] words = result.split("\\s+");
-        Set<String> set = new TreeSet<String>(Comparator.comparing(String::length).thenComparing(String::compareToIgnoreCase));
-        Collections.addAll(set, words);
+        Set<String> set = new TreeSet<String>(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder()));
+        //Collections.addAll(set, words);
+        set.addAll(Arrays.asList(words));
         return new ArrayList<>(set);
     }
 
@@ -22,6 +24,5 @@ public class Task1 {
     public static void main(String[] args) {
         String testString = "Тестовая строка для удаления слов, которые повторяются. \"строка\" для удаления!";
         System.out.println(getUniqueSortedWords(testString));
-
     }
 }

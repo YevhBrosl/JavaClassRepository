@@ -28,29 +28,21 @@ import java.util.*;
 //        [A, B]
 public class Task2 {
 
-    public static Set<String> union(Set<String> set1, Set<String> set2) {
-        Set<String> result = new LinkedHashSet<>(set1);
+    public static<T> Set<T> union(Set<T> set1, Set<T> set2) {
+        Set<T> result = new HashSet<>(set1);
         result.addAll(set2);
         return result;
     }
 
-    public static Set<String> intersection(Set<String> set1, Set<String> set2) {
-        Set<String> result = new LinkedHashSet<>();
-        for (String string : set1) {
-            if (set2.contains(string) && !result.contains(string)) {
-                result.add(string);
-            }
-        }
+    public static <T> Set<T> intersection(Set<T> set1, Set<T> set2) {
+        Set<T> result = new HashSet<>(set1);
+        result.retainAll(set2);
         return result;
     }
 
-    public static Set<String> difference(Set<String> set1, Set<String> set2) {
-        Set<String> result = new LinkedHashSet<>();
-        for (String string : set1) {
-            if (!set2.contains(string) && !result.contains(string)) {
-                result.add(string);
-            }
-        }
+    public static<T> Set<T> difference(Set<T> set1, Set<T> set2) {
+        Set<T> result = new HashSet<>(set1);
+        result.removeAll(set2);
         return result;
     }
 
