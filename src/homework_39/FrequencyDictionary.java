@@ -1,7 +1,5 @@
 package homework_39;
 
-import javax.print.attribute.IntegerSyntax;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -35,6 +33,39 @@ public class FrequencyDictionary {
         }
         return frequencyMap;
     }
+    public static Map<String, Integer> frequencyDictionary1(String text) {
+        String result = text.replaceAll("[^a-zA-Z0-9а-яА-Я]", " ");
+        String[] words = result.split("\\s+");
+        Map<String, Integer> frequencyMap = new LinkedHashMap<>();
+        for (String word : words) {
+
+            // V (K key, V value) -> функция пересчета нового значения, в качестве аргумента принимает ключ и значение, полученное по этому ключу
+
+            frequencyMap.compute(word, (key, oldValue) -> oldValue == null ? 1 : oldValue + 1);
+
+//            frequencyMap.computeIfPresent(word, (k, v) -> v +1);
+//            frequencyMap.computeIfAbsent(word, k -> 1);
+        }
+        return frequencyMap;
+    }
+
+    public static Map<String, Integer> frequencyDictionary2(String text) {
+        String result = text.replaceAll("[^a-zA-Z0-9а-яА-Я]", " ");
+        String[] words = result.split("\\s+");
+        Map<String, Integer> frequencyMap = new LinkedHashMap<>();
+        for (String word : words) {
+
+            // Если get(key) -> вернет null, то результат будет аналогичен вызову метода put(key, value(2-й параметр))
+            // Если же ключ существует в карте, то применяется функция объединения значений
+            // если результат объединения будет null - то пара из карты будет удалена
+
+            int delta = 1;
+
+            frequencyMap.merge(word, delta, (oldValue, value) -> oldValue + value);
+        }
+        return frequencyMap;
+    }
+
 
         private static Map<Character, Integer> frequencyCharsDictionary(String text) {
             char[] chars = text.toCharArray();

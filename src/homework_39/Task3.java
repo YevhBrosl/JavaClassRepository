@@ -7,7 +7,6 @@ package homework_39;
 //cherry: 30
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,6 +14,7 @@ public class Task3 {
 
     public static Map<String, Integer> intersection(Map<String, Integer> map1, Map<String, Integer> map2) {
         Map<String, Integer> intersectionMap = new HashMap<>();
+
         for (String key : map1.keySet()) {
             if (map2.containsKey(key)) {
                 intersectionMap.put(key, map2.get(key));
@@ -22,6 +22,15 @@ public class Task3 {
         }
         return intersectionMap;
     }
+
+    public static Map<String, Integer> intersection1(Map<String, Integer> map1, Map<String, Integer> map2) {
+        Map<String, Integer> result = new HashMap<>(map1);
+        Set<String> keyResult = result.keySet();
+        keyResult.retainAll(map2.keySet());
+
+        return result;
+    }
+
     public static void main(String[] args) {
         Map<String, Integer> map1 = new HashMap<>();
         map1.put("apple", 50);
