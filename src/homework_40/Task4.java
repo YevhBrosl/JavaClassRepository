@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 //которые начинаются на определенную букву (например, "A"),
 //удалите дубликаты и отсортируйте их в алфавитном порядке.
 public class Task4 {
+    
 
     public static void main(String[] args) {
         List<String> fruit = List.of("Apple", "Orange", "Avocado", "Apple", "Banana", "Apricot", "Cherry", "Apricot", "Plum");

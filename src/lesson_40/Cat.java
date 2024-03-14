@@ -15,7 +15,7 @@ public class Cat {
     }
 
     public String getName() {
-        System.out.println("Call getName");
+        //System.out.println("Call getName");
         return name;
     }
 
