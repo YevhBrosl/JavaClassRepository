@@ -41,6 +41,7 @@ public class Task1 {
     private static void task2() {
         List<String> strings = List.of("Apple", "Orange", "Avocado", "Pineapple", "Banana", "Apricot", "Cherry", "Watermelon", "Plum");
         Optional<String> longestString = strings.stream()
+                //.max(Comparator.comparing(str -> str.length()));
                 .max((str1, str2) -> str1.length() - str2.length());
         if (longestString.isPresent()) {
             System.out.println(longestString.get());
