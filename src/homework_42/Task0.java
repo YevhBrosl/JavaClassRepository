@@ -17,8 +17,9 @@ public class Task0 {
     }
 
     private static int countLetters(String text) {
-        String result = text.replaceAll("[^a-zA-Z0-9а-яА-Я]", " ");
-        String[] words = result.split("\\s+");
+        String[] words = text.replaceAll("[^a-zA-Z0-9а-яА-Я]", " ")
+                .split("\\s+");
+
         OptionalInt reduce = Arrays.stream(words)
                 .filter(Objects::nonNull)
                 .filter(str -> str.length() > 4)

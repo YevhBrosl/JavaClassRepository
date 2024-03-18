@@ -33,7 +33,8 @@ public class Task3 {
         Optional<Map.Entry<String, Double>> maxAverageSalary = averageSalary
                 .entrySet()
                 .stream()
-                .max(Comparator.comparingDouble(Map.Entry::getValue));
+                .max(Map.Entry.comparingByValue());
+                //.max(Comparator.comparingDouble(Map.Entry::getValue));
 
         maxAverageSalary.ifPresent(System.out::println);
     }
