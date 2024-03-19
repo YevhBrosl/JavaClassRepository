@@ -32,7 +32,10 @@ public class PasswordValidator {
                 continue;
             }
         }
-        if (!isLowerCase || !isUpperCase || !isDigit || !isSpecialSymbol)
-            throw new PasswordValidateException("Character type error");
+        if (!isLowerCase) throw new PasswordValidateException("Password contains no low case character");
+        if (!isUpperCase) throw new PasswordValidateException("Password contains no upper case character");
+        if (!isDigit) throw new PasswordValidateException("Password contains no digit");
+        if (!isSpecialSymbol) throw new PasswordValidateException("Password contains no special symbol");
+
     }
 }

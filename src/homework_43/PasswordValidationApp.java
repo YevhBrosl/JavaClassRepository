@@ -8,10 +8,13 @@ public class PasswordValidationApp {
 
         String password = "Qwerty1#";
 
-        password = "";
+        //password = "";
         //password = "Qwert1#";
         //password = "qwerty1#";
+        //password = "QWERTY1#";
         //password = "Qwerty11";
+        //password = "Qwerty@#";
+        password = "Qwerty1#";
 
         try {
             PasswordValidator.validatePassword(password);

@@ -10,12 +10,6 @@ import java.util.stream.Collectors;
 public class Task1 {
     public static void main(String[] args) {
 
-        groupByDepartment();
-
-    }
-
-    private static void groupByDepartment() {
-
     List<Employee> employees = new ArrayList<>(List.of(
                 new Employee("Petr", 2500, "IT"),
                 new Employee("Silvia", 1500,  "IT"),
@@ -26,6 +20,11 @@ public class Task1 {
                 new Employee("John", 3200, "IT")
         ));
 
+        groupByDepartment(employees);
+
+    }
+
+    private static void groupByDepartment(List<Employee> employees) {
     Map<String, List<Employee>> map = employees.stream()
             .collect(Collectors.groupingBy(Employee::getDepartment));
 

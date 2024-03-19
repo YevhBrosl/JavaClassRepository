@@ -18,19 +18,25 @@ public class Task2 {
     private static void task2() {
 
         List<Transaction> transactions = new ArrayList<>(List.of(
-                new Transaction(100.0, CREDIT, "12.05"),
-                new Transaction(1265.0, DEBIT, "16.30"),
-                new Transaction(420.0, CREDIT, "09.10"),
-                new Transaction(25.0, DEBIT, "21.35"),
-                new Transaction(1750.0, CREDIT, "14.20"),
-                new Transaction(785.0, DEBIT, "19.45"),
-                new Transaction(55.0, DEBIT, "10.15")
+                new Transaction(100.0, CREDIT),
+                new Transaction(1265.0, DEBIT),
+                new Transaction(420.0, CREDIT),
+                new Transaction(25.0, DEBIT),
+                new Transaction(1750.0, CREDIT),
+                new Transaction(785.0, DEBIT),
+                new Transaction(55.0, DEBIT)
         ));
 
         double totalCredit = transactions.stream()
                 .filter(transaction -> transaction.getType() == CREDIT)
                 .mapToDouble(Transaction::getAmount)
                 .sum();
+
+//        double sumDebit = transactions
+//                .stream()
+//                .filter(tr -> tr.getType() == TransactionType.DEBIT)
+//                .map(Transaction::getAmount)
+//                .reduce(0.0, Double::sum);
 
         System.out.println("totalCredit: " + totalCredit);
 
@@ -45,6 +51,11 @@ public class Task2 {
                 .max(Comparator.comparingDouble(Transaction::getAmount));
 
         maxTransaction.ifPresent(System.out::println);
+
+//        System.out.println("Сумма DEBIT транзакций: " + sumDebit);
+//        System.out.println("Сумма CREDIT транзакций: " + sumCredit);
+//
+//        System.out.println("Транзакция с максимальной суммой: "+  ((transactionMax.isPresent()) ? transactionMax.get() : " не найдена"));
 
     }
 
