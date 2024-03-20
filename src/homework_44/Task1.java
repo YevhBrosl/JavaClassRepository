@@ -11,11 +11,11 @@ public class Task1 {
         String sourceFile = "src/homework_44/text.txt";
         File targetFile = new File("src/homework_44/copy.txt");
 
-        try {
-            targetFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            targetFile.createNewFile();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         try (
                 BufferedReader reader = new BufferedReader(new FileReader(sourceFile));

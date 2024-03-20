@@ -1,8 +1,6 @@
 package homework_42;
 
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.OptionalInt;
 
 //Разбейте строку на слова, используя в качестве разделителя пробел.
 //Используя функцию reduce верните суммарное количество букв в словах, которые длиннее 4 символов
